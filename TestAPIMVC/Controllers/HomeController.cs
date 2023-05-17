@@ -26,7 +26,7 @@ namespace TestAPIMVC.Controllers
         public async Task<IActionResult> PrivacyAsync(double distance, double period)
         {
             string apiUrl =
-                $"https://localhost:7251/WeatherForecast/" +
+                $"https://localhost:7251/Tinhtoan/" +
                 $"get-average-pace?distance={distance}&period={period}";
             var httpClient = new HttpClient(); // tạo ra để callApi
             var response = await httpClient.GetAsync(apiUrl);// Lấy dữ liệu ra từ API URL

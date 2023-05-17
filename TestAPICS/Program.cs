@@ -8,7 +8,7 @@ Console.WriteLine("Enter run distance");
 double distance = Convert.ToDouble(Console.ReadLine());
 // Dựa vào dl lấy được gán vào trong URL API
 string apiUrl =
-    $"https://localhost:7251/WeatherForecast/" +
+    $"https://localhost:7251/Tinhtoan/" +
     $"get-average-pace?distance={distance}&period={period}";
 var httpClient = new HttpClient(); // tạo ra để callApi
 var response = await httpClient.GetAsync(apiUrl);// Lấy dữ liệu ra từ API URL
