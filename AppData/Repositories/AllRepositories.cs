@@ -51,12 +51,21 @@ namespace AppData.Repositories
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return dbset.ToList();
         }
 
         public bool UpdateItem(T item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                dbset.Update(item);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
