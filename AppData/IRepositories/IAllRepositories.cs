@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace AppData.IRepositories
 {
-    internal interface IAllRepositories
+    public interface IAllRepositories<T>
     {
+        public IEnumerable<T> GetAll();
+        public bool CreateItem(T item);
+        public bool DeleteItem(T item);
+        public bool UpdateItem(T item);
     }
 }
