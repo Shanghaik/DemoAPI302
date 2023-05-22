@@ -30,27 +30,34 @@ namespace AppAPI.Controllers
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public MauSac Get(Guid id)
         {
-            return "value";
+            return irepos.GetAll().First(p=> p.Id == id);
         }
 
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("create-mausac")]
+        public bool CreateColor(string ma, string ten)
         {
+            MauSac color = new MauSac();
+            color.Ma = ma; color.Ten = ten; color.Id = Guid.NewGuid();  
+            return irepos.CreateItem(color);    
         }
-
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("edit-mausac")]
+        public bool UpdateColor(Guid id, string ma, string ten)
         {
+            // Trỏ đến màu sắc trong db để sửa
+            MauSac color = irepos.GetAll().First(p=> p.Id == id);
+            color.Ten = ten; color.Ma = ma;
+            return irepos.UpdateItem(color);
         }
-
-        // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public bool DeleteColor(Guid id)
         {
+            // Trỏ đến màu sắc trong db để sửa
+            MauSac color = irepos.GetAll().First(p => p.Id == id);
+            return irepos.DeleteItem(color);
         }
+
     }
 }
